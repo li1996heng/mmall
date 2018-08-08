@@ -147,4 +147,24 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 检查用户名是否存在 -->
+  <select id="checkUsername" parameterType="string" resultType="int">
+    SELECT COUNT(1) FROM mmall_user WHERE username = #{username}
+  </select>
+
+  <!-- 检查用户名是否存在 -->
+  <select id="checkEmail" parameterType="string" resultType="int">
+    SELECT COUNT(1) FROM mmall_user WHERE email = #{email}
+  </select>
+
+  <!-- 用户登录 -->
+  <select id="login" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM
+      mmall_user
+    WHERE
+      username = #{username} AND password = #{password}
+  </select>
 </mapper>

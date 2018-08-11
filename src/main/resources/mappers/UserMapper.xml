@@ -153,7 +153,7 @@
     SELECT COUNT(1) FROM mmall_user WHERE username = #{username}
   </select>
 
-  <!-- 检查用户名是否存在 -->
+  <!-- 检查邮箱是否存在 -->
   <select id="checkEmail" parameterType="string" resultType="int">
     SELECT COUNT(1) FROM mmall_user WHERE email = #{email}
   </select>
@@ -166,5 +166,59 @@
       mmall_user
     WHERE
       username = #{username} AND password = #{password}
+  </select>
+  <!-- 查询密保问题 -->
+  <select id="selectQuestion" resultType="string" parameterType="string">
+    SELECT
+      question
+    FROM
+      mmall_user
+    WHERE
+      username = #{username}
+  </select>
+
+  <!-- 检查密保问题是否正确 -->
+  <select id="chekAnswer" parameterType="map" resultType="int">
+    select
+      count(1)
+    from
+      mmall_user
+    where
+      username = #{username}
+    and
+      question = #{question}
+    and
+      answer = #{answer}
+  </select>
+
+  <!-- 修改密码 -->
+  <update id="updatePassword" parameterType="map">
+    update
+      mmall_user
+     set
+      password = #{newPassword},
+      update_time = now()
+     where
+      username = #{username}
+  </update>
+
+  <!-- 修改密码前检查用户输入的旧密码是否输入正确 -->
+  <select id="checkPassword" parameterType="map" resultType="int">
+    select
+      count(1)
+    from
+      mmall_user
+    where
+      id = #{userId} and password = #{oldPassword}
+  </select>
+
+  <!-- 更新用户信息时检查邮箱是否被占用 -->
+  <select id="checkEmailByUserId" resultType="int" parameterType="map">
+    select
+      count(1)
+    from
+      mmall_user
+    where
+      email = #{email} and id != #{userId}
   </select>
 </mapper>

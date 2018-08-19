@@ -176,4 +176,12 @@ public class UserServiceImpl implements IUserService {
         }
         return Result.createByErrorMessage("未查到用户信息");
     }
+
+    @Override
+    public Result checkAdminRole(User user) {
+        if (user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN) {
+            return Result.createBySuccess();
+        }
+        return Result.createByError();
+    }
 }

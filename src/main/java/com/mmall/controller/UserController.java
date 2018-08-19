@@ -1,15 +1,15 @@
 package com.mmall.controller;
 
-import ch.qos.logback.core.pattern.util.RegularEscapeUtil;
 import com.mmall.common.Const;
 import com.mmall.common.ResponseCode;
 import com.mmall.common.Result;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/user/")
 public class UserController {
 
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private IUserService userService;
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * @Auther: Mica.Li
  * @Date: 2018/8/5 23:52
- * @Description:
+ * @Description: 服务端通用返回结果
  */
 @JsonSerialize(include =  JsonSerialize.Inclusion.NON_NULL)
 //保证序列化json的时候,如果是null的对象,key也会消失

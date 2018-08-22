@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @Auther: Mica.Li
  * @Date: 2018/8/11 16:46
- * @Description:
+ * @Description: 后台管理员控制层
  */
 @RestController
 @RequestMapping("/manage/user")
